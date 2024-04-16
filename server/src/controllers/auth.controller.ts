@@ -66,12 +66,14 @@ export const signup = catchAsync(
 			phone,
 			address,
 			storeId,
+			role,
 		}: {
 			email: string;
 			password: string;
 			phone: string;
 			address: string;
 			storeId: string;
+			role: string;
 		} = req.body;
 
 		const existUser: UserInterface[] = await User.find({ email, storeId });
@@ -94,6 +96,7 @@ export const signup = catchAsync(
 			phone,
 			address,
 			storeId,
+			role,
 		});
 		createAndSendToken(newUser, 201, res);
 	}

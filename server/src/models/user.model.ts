@@ -13,6 +13,7 @@ export interface UserInterface {
 	pin: number;
 	active: boolean;
 	role: string;
+	image: string;
 }
 
 const userSchema = new mongoose.Schema<UserInterface>(
@@ -59,6 +60,9 @@ const userSchema = new mongoose.Schema<UserInterface>(
 		active: {
 			type: Boolean,
 			default: false,
+		},
+		image: {
+			type: String,
 		},
 		role: {
 			type: String,

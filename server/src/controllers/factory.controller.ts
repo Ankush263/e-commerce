@@ -47,7 +47,7 @@ export const createOne = (Model: Model<any>) =>
 		});
 	});
 
-export const getOne = (Model: Model<any>, popOptions: any) =>
+export const getOne = (Model: Model<any>, popOptions?: any) =>
 	catchAsync(async (req: Request, res: Response, next: NextFunction) => {
 		let query = Model.findById(req.params.id);
 		if (popOptions) query = query.populate(popOptions);
@@ -65,7 +65,7 @@ export const getOne = (Model: Model<any>, popOptions: any) =>
 		});
 	});
 
-export const getAll = (Model: Model<any>, customFilters: string[]) =>
+export const getAll = (Model: Model<any>, customFilters?: string[]) =>
 	catchAsync(async (req: Request | any, res: Response, next: NextFunction) => {
 		let filter = { ...customFilters };
 
