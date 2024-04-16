@@ -1,6 +1,7 @@
 version: '3'
 services:
   ecommerce-ts-api:
+    image: ankushbanik263/ecommerce-api-ts:latest
     build: .
     ports:
       - '8000:8000'
