@@ -28,6 +28,7 @@ const orderSchema = new mongoose.Schema<OrderInterface>(
 		},
 		paid: {
 			type: Boolean,
+			default: false,
 		},
 		paymentType: {
 			type: String,
