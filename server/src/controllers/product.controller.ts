@@ -12,8 +12,12 @@ export const createProduct = catchAsync(
 	async (req: Request | any, res: Response, next: NextFunction) => {
 		const { name, description, quantity, variation, price } = req.body;
 
-		const key = req.file.key;
-		const url = `https://${process.env.BUCKET_NAME}.s3.amazonaws.com/${key}`;
+		const key = req?.file?.key;
+		let url: string;
+
+		if (key) {
+			url = `https://${process.env.BUCKET_NAME}.s3.amazonaws.com/${key}`;
+		}
 
 		const product: ProductInterface = await Product.create({
 			name,
@@ -61,6 +65,22 @@ export const deleteImage = catchAsync(
 				console.log(data);
 			}
 		});
+		next();
+	}
+);
+
+export const checkOwner = catchAsync(
+	async (req: Request | any, res: Response, next: NextFunction) => {
+		const product = await Product.findById(req.params.id);
+
+		if (!product) {
+			return next(new AppError(`Product does not exists with that id`, 404));
+		}
+
+		if (product.admin.toString() !== req.user.id.toString()) {
+			return next(new AppError(`You are not the admin of this product`, 404));
+		}
+
 		next();
 	}
 );
