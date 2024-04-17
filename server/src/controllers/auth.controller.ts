@@ -61,6 +61,8 @@ export const login = catchAsync(
 export const signup = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const {
+			firstName,
+			lastName,
 			email,
 			password,
 			phone,
@@ -68,6 +70,8 @@ export const signup = catchAsync(
 			storeId,
 			role,
 		}: {
+			firstName: string;
+			lastName: String;
 			email: string;
 			password: string;
 			phone: string;
@@ -91,6 +95,8 @@ export const signup = catchAsync(
 		const hashedPassword: string = bcrypt.hashSync(password, 12);
 
 		const newUser: UserInterface = await User.create({
+			firstName,
+			lastName,
 			email,
 			password: hashedPassword,
 			phone,
