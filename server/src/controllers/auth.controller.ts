@@ -135,7 +135,7 @@ export const protect = catchAsync(
 		if (!freshUser) {
 			return next(
 				new AppError(
-					`The retailer belonging to this token does no longer exist`,
+					`The user belonging to this token does no longer exist`,
 					401
 				)
 			);
