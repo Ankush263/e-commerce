@@ -1,2 +1,3 @@
 export { signupMethod } from './sign-up';
-export { loginMethod } from './log-in';
+export { loginMethod, signIn, signInAsAdmin } from './log-in';
+export { logoutMethod } from './log-out';

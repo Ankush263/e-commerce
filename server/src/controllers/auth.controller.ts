@@ -50,6 +50,10 @@ export const login = catchAsync(
 
 		const user = await User.findOne({ email }).select('+password');
 
+		if (!user.password) {
+			return next(new AppError('Incorrect email or password', 401));
+		}
+
 		if (!user || !bcrypt.compareSync(password, user.password)) {
 			return next(new AppError(`Incorrect email or password`, 401));
 		}
