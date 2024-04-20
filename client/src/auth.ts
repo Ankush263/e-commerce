@@ -106,3 +106,6 @@ export const {
 export const updateRole = (newRole: string) => {
 	currentRole = newRole;
 };
+
+// * Reference
+//* https://github.com/nextauthjs/next-auth/discussions/4394#discussioncomment-3293618
